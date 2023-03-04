@@ -4,7 +4,6 @@ from messages import reply_message
 async def send_message(message, user_message, is_private):
     try:
         response = reply_message(user_message)
-
         if is_private:
             await message.author.send(response)
         else:
@@ -37,6 +36,11 @@ def run():
             user_message = user_message[1]
             await send_message(message, user_message, is_private=True)
         else:
-            await send_message(message, user_message, is_private=False)
+            # Check if message was sent in the desired channel
+            if message.channel.name == 'play-pal':
+                await send_message(message, user_message, is_private=False)
+
+
+            
 
     client.run(token)
