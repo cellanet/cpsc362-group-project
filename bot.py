@@ -35,11 +35,51 @@ async def play(ctx: commands.Context, *, track: wavelink.YouTubeTrack):
     
     embed = discord.Embed(title= "Now playing", description= track, color= 2123412)
     embed.set_thumbnail(url= await track.fetch_thumbnail())
+    await ctx.send(embed = embed)
     
 @client.command()
 async def disc(ctx: commands.Context):
     vc: wavelink.Player = ctx.voice_client
     await vc.disconnect()
     vc.queue.clear()
+    
+@client.command()
+async def pause(ctx: commands.Context):
+    vc: wavelink.Player = ctx.voice_client
+    await vc.pause()
+    
+@client.command()
+async def resume(ctx: commands.Context):
+    vc: wavelink.Player = ctx.voice_client
+    await vc.resume()
+
+@client.command()
+async def volume(ctx: commands.Context, value: int):
+    if not ctx.author.voice or not ctx.author.voice.channel:
+        await ctx.send('You need to be in a voice channel to use this command!')
+        return
+    vc: wavelink.Player = ctx.voice_client
+    if not vc:
+        vc = await ctx.author.voice.channel.connect()
+    volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
+    await vc.set_volume(volume)
+
+# Use only if we retain 0 - 1000 for finer control, code scales the volume proportionally
+# @client.command()
+# async def set_volume(ctx: commands.Context, value: int):
+#     if not ctx.author.voice or not ctx.author.voice.channel:
+#         await ctx.send('You need to be in a voice channel to use this command!')
+#         return
+#     vc: wavelink.Player = ctx.voice_client
+#     if not vc:
+#         vc = await ctx.author.voice.channel.connect()
+#     volume = max(min(value, 1000), 0)  # scale down the input volume to 0-100 range
+#     volume_scaled = int(volume / 10)  # scale the volume to 0-10 range for wavelink
+#     await vc.set_volume(volume_scaled)
+
+@client.command()
+async def mute(ctx: commands.Context):
+    vc: wavelink.Player = ctx.voice_client
+    await vc.set_volume(0)
 
 client.run(TOKEN)
