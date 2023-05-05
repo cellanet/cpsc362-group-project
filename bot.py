@@ -35,7 +35,32 @@ async def play(ctx: commands.Context, *, track: wavelink.YouTubeTrack):
     
     embed = discord.Embed(title= "Now playing", description= track, color= 2123412)
     embed.set_thumbnail(url= await track.fetch_thumbnail())
-    await ctx.send(embed = embed)
+    message = await ctx.send(embed = embed)
+    
+    # add reactions to the message
+    await message.add_reaction('⏸')
+    await message.add_reaction('▶')
+    await message.add_reaction('⏭️')
+    
+    def check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) in ['⏸', '▶', '⏭️']
+    
+    while True:
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        except asyncio.TimeoutError:
+            # stop listening after 60 seconds
+            break
+        else:
+            if str(reaction.emoji) == '⏸':
+                await pause(ctx)
+            elif str(reaction.emoji) == '▶':
+                await resume(ctx)
+            elif str(reaction.emoji) == '⏭️':
+                await skip(ctx)
+            # remove the user's reaction after processing
+            await message.remove_reaction(reaction, user)
+
     
 @client.command()
 async def disc(ctx: commands.Context):
