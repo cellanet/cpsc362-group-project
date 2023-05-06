@@ -7,7 +7,7 @@ import wavelink
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-print(TOKEN)
+REC = os.getenv('RECOMMENDATION')
     
 intents = discord.Intents.default()
 intents.message_content = True
@@ -31,23 +31,25 @@ async def play(ctx: commands.Context, *, track: wavelink.YouTubeTrack):
         vc: wavelink.Player = await ctx.author.voice.channel.connect(cls = wavelink.Player)
     else:
         return
+    # ctx.send('You need to be in a voice channel to use this command!')
+    await ctx.send(f'Total length: {track.duration()} seconds')
     await vc.play(track)
-    
+
     embed = discord.Embed(title= "Now playing", description= track, color= 2123412)
     embed.set_thumbnail(url= await track.fetch_thumbnail())
     message = await ctx.send(embed = embed)
-    
+
     # add reactions to the message
     await message.add_reaction('⏸')
     await message.add_reaction('▶')
     await message.add_reaction('⏭️')
-    
+
     def check(reaction, user):
         return user == ctx.author and str(reaction.emoji) in ['⏸', '▶', '⏭️']
-    
+
     while True:
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+            reaction, user = await client.wait_for('reaction_add', timeout=120.0, check=check)
         except asyncio.TimeoutError:
             # stop listening after 60 seconds
             break
@@ -61,7 +63,6 @@ async def play(ctx: commands.Context, *, track: wavelink.YouTubeTrack):
             # remove the user's reaction after processing
             await message.remove_reaction(reaction, user)
 
-    
 @client.command()
 async def disc(ctx: commands.Context):
     vc: wavelink.Player = ctx.voice_client
@@ -79,6 +80,11 @@ async def resume(ctx: commands.Context):
     await vc.resume()
 
 @client.command()
+async def rec(ctx: commands.Context):
+    vc: wavelink.Player = ctx.voice_client
+    await ctx.send(REC)
+
+@client.command()
 async def volume(ctx: commands.Context, value: int):
     if not ctx.author.voice or not ctx.author.voice.channel:
         await ctx.send('You need to be in a voice channel to use this command!')
@@ -88,6 +94,13 @@ async def volume(ctx: commands.Context, value: int):
         vc = await ctx.author.voice.channel.connect()
     volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
     await vc.set_volume(volume)
+    
+@client.command()
+async def help(ctx: commands.Context):
+    vc: wavelink.Player = ctx.voice_client
+    await ctx.send(
+        
+    )
 
 # Use only if we retain 0 - 1000 for finer control, code scales the volume proportionally
 # @client.command()
