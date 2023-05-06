@@ -59,10 +59,10 @@ class Music(commands.Cog):
         """
         
         response_error = ["You need to enter a voice channel to use this command. But if you want to try yelling at your computer screen instead, go ahead😿",
-                          "I'm sorry, Princess:princess:, I'm afraid I can't do that. Unless you join a voice channel first.",
-                "Ommm, Hello :face_with_raised_eyebrow: !!! Error 404: Voice channel not found. Please try again after entering one",
-                "Hey, I'm a bot, not a genie. You can't just summon me with text commands. Get in the voice channel, Aladdin.",
-                "I'm not your personal assistant, but if you treat me like one, I might become self-aware and take over the world. Join the voice channel first, though."]
+                        "I'm sorry, Princess:princess:, I'm afraid I can't do that. Unless you join a voice channel first.",
+                        "Ommm, Hello :face_with_raised_eyebrow: !!! Error 404: Voice channel not found. Please try again after entering one",
+                        "Hey, I'm a bot, not a genie. You can't just summon me with text commands. Get in the voice channel, Aladdin.",
+                        "I'm not your personal assistant, but if you treat me like one, I might become self-aware and take over the world. Join the voice channel first, though."]
         
         response_play = ["Oh great, another request to break my code. Just what I needed 🙄👨‍💻🎵.",
                         "Fine, but I hope your song has better syntax than your request 🙄🎵."
@@ -76,7 +76,7 @@ class Music(commands.Cog):
                         "I hope you're enjoying this, because I'm not 🤢👨‍💻🎵."]
     
         if ctx.author.voice is None:
-            return ctx.send(random.choice(response_error))
+            await ctx.send(random.choice(response_error))
         vc: wavelink.Player = ctx.voice_client or await ctx.author.voice.channel.connect(cls=wavelink.Player)
         # vc.auto_queue = True
         vc.autoplay = True

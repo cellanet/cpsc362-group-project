@@ -1066,3 +1066,62 @@ Identify and stop the process that's listening on port 2333 or configure this ap
 2023-05-06 08:17:00.271  INFO 47820 --- [XNIO-1 task-2] lavalink.server.io.RequestLoggingFilter  : GET /v3/decodetrack?encodedTrack=QAAAiAIAJVRpbWJhbGFuZCAtIEFwb2xvZ2l6ZSBmdC4gT25lUmVwdWJsaWMACVRpbWJhbGFuZAAAAAAAAuJIAAtaU00zdzF2LUFfWQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PVpTTTN3MXYtQV9ZAAd5b3V0dWJlAAAAAAAAmuw%3D, client=0:0:0:0:0:0:0:1
 2023-05-06 08:19:21.758  INFO 47820 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:64606 -- CloseStatus[code=1006, reason=]
 2023-05-06 08:19:21.759  INFO 47820 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2023-05-06 08:39:58.560  INFO 35988 --- [main] lavalink.server.Launcher                 : Starting Launcher using Java 20.0.1 on DESKTOP-5LRSP6M with PID 35988 (C:\Users\andyh\OneDrive - Cal State Fullerton\Documents\GitHub\cpsc362-group-project\Lavalink.jar started by andyh in C:\Users\andyh\OneDrive - Cal State Fullerton\Documents\GitHub\cpsc362-group-project)
+2023-05-06 08:39:58.593  INFO 35988 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2023-05-06 08:40:01.340  INFO 35988 --- [main] lavalink.server.Launcher                 : Started Launcher in 4.439 seconds (JVM running for 7.234)
+2023-05-06 08:40:01.349  INFO 35988 --- [main] lavalink.server.Launcher                 : You can safely ignore the big red warning about illegal reflection. See https://github.com/freyacodes/Lavalink/issues/295
+2023-05-06 08:40:01.505  INFO 35988 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        3.7.5
+	Build time:     06.03.2023 12:02:05 UTC
+	Branch          HEAD
+	Commit:         c00286d
+	Commit time:    06.03.2023 11:59:46 UTC
+	JVM:            20.0.1
+	Lavaplayer      1.4.0-original
+
+2023-05-06 08:40:01.525  INFO 35988 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2023-05-06 08:40:03.513  WARN 35988 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2023-05-06 08:40:03.581  INFO 35988 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2023-05-06 08:40:03.583  INFO 35988 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2045 ms
+2023-05-06 08:40:03.748  WARN 35988 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2023-05-06 08:40:04.405  INFO 35988 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2023-05-06 08:40:05.975  INFO 35988 --- [main] lavalink.server.config.KoeConfiguration  : OS: WINDOWS, Arch: X86_64
+2023-05-06 08:40:05.976  INFO 35988 --- [main] lavalink.server.config.KoeConfiguration  : Enabling JDA-NAS
+2023-05-06 08:40:05.982  INFO 35988 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2023-05-06 08:40:05.996  INFO 35988 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2023-05-06 08:40:06.432  INFO 35988 --- [main] io.undertow                              : starting server: Undertow - 2.2.16.Final
+2023-05-06 08:40:06.445  INFO 35988 --- [main] org.xnio                                 : XNIO version 3.8.6.Final
+2023-05-06 08:40:06.467  INFO 35988 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.6.Final
+2023-05-06 08:40:06.680  INFO 35988 --- [main] org.jboss.threads                        : JBoss Threads version 3.1.0.Final
+2023-05-06 08:40:06.858  INFO 35988 --- [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port(s) 2333 (http)
+2023-05-06 08:40:06.869  INFO 35988 --- [main] lavalink.server.Launcher                 : Started Launcher in 5.504 seconds (JVM running for 12.762)
+2023-05-06 08:40:06.871  INFO 35988 --- [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2023-05-06 08:40:17.526  INFO 35988 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-06 08:40:17.528  INFO 35988 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-06 08:40:17.530  INFO 35988 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-05-06 08:40:17.575  INFO 35988 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:50882
+2023-05-06 08:40:17.618  INFO 35988 --- [XNIO-1 task-1] lavalink.server.io.RequestLoggingFilter  : GET /, client=0:0:0:0:0:0:0:1
+2023-05-06 08:40:17.670  INFO 35988 --- [XNIO-1 task-2] lavalink.server.io.RequestLoggingFilter  : GET /version, client=127.0.0.1
+2023-05-06 08:40:18.049  INFO 35988 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from Wavelink/2.1.0
+2023-05-06 08:40:26.076  INFO 35988 --- [XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:bts"
+2023-05-06 08:40:26.968  INFO 35988 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: bts
+2023-05-06 08:40:27.256  INFO 35988 --- [XNIO-1 task-1] lavalink.server.io.RequestLoggingFilter  : GET /v3/loadtracks?identifier=ytsearch:bts, client=127.0.0.1
+2023-05-06 08:41:10.988  INFO 35988 --- [XNIO-1 I/O-30] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:50882 -- CloseStatus[code=1006, reason=]
+2023-05-06 08:41:10.989  INFO 35988 --- [XNIO-1 I/O-30] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2023-05-06 08:41:12.583  INFO 35988 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:51022
+2023-05-06 08:41:12.589  INFO 35988 --- [XNIO-1 task-1] lavalink.server.io.RequestLoggingFilter  : GET /, client=0:0:0:0:0:0:0:1
+2023-05-06 08:41:12.594  INFO 35988 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from Wavelink/2.1.0
+2023-05-06 08:41:12.596  INFO 35988 --- [XNIO-1 task-2] lavalink.server.io.RequestLoggingFilter  : GET /version, client=127.0.0.1
+2023-05-06 08:41:15.147  INFO 35988 --- [XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:bts"
+2023-05-06 08:41:15.696  INFO 35988 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: bts
+2023-05-06 08:41:15.707  INFO 35988 --- [XNIO-1 task-2] lavalink.server.io.RequestLoggingFilter  : GET /v3/loadtracks?identifier=ytsearch:bts, client=127.0.0.1
+2023-05-06 08:41:58.626  INFO 35988 --- [XNIO-1 I/O-28] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:51022 -- CloseStatus[code=1006, reason=]
+2023-05-06 08:41:58.626  INFO 35988 --- [XNIO-1 I/O-28] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
