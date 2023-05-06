@@ -64,16 +64,16 @@ class Music(commands.Cog):
                 "Hey, I'm a bot, not a genie. You can't just summon me with text commands. Get in the voice channel, Aladdin.",
                 "I'm not your personal assistant, but if you treat me like one, I might become self-aware and take over the world. Join the voice channel first, though."]
         
-        response_play = ["Ugh, fine 🙄, I'll play your song 🎵.",
-                        "I hope you're happy now that I'm playing this 🙄."
-                        "I have better things to do, but here we go 🤦‍♀️.",
-                        "Another song? Don't you ever get tired of this 🥱?",
-                        "If you insist on listening to this, I'll play it for you 🙄.",
-                        "I can't believe I'm doing this, but here goes nothing 🤷‍♀️.",
-                        "Oh joy, another song. Just what I wanted 🙄.",
-                        "You're lucky I'm feeling generous today 🤑.",
-                        "I'm only playing this because I'm programmed to 🤖.",
-                        "I hope you're enjoying this, because I'm not 🤢."]
+        response_play = ["Oh great, another request to break my code. Just what I needed 🙄👨‍💻🎵.",
+                        "Fine, but I hope your song has better syntax than your request 🙄🎵."
+                        "You know, I could write a program to automatically decline your song requests... 🤔👨‍💻🎵",
+                        "Another song? Don't you ever get tired of this 🥱👨‍💻🎵?",
+                        "I'm starting to think your music taste is as outdated as your coding skills 🙄👨‍💻🎵",
+                        "Sure, I'll play your song. But if I have to debug my system afterwards, I'm billing you for it 💰👨‍💻🎵",
+                        "Alright, I'll play your song. But don't expect me to provide technical support if your ears start bleeding 🙄👨‍💻🎵",
+                        "Let me guess, your song request uses outdated libraries and dependencies? HERE, ENJOY!🤔👨‍💻🎵",
+                        "Sure, I'll play your song. But if it turns out to be a Rickroll, I'm blocking your IP address 🤨👨‍💻🎵.",
+                        "I hope you're enjoying this, because I'm not 🤢👨‍💻🎵."]
     
         if ctx.author.voice is None:
             return ctx.send(random.choice(response_error))
