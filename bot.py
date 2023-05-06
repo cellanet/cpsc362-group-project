@@ -7,7 +7,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-TOKEN = "MTEwMzk1Mzc1NjU2NTAyODkxNQ.G96d6-._dVSTFW8ii0fdWwIaO2qQNZDsxejv4iH8GNbB0"
+# TOKEN = "MTEwMzk1Mzc1NjU2NTAyODkxNQ.G96d6-._dVSTFW8ii0fdWwIaO2qQNZDsxejv4iH8GNbB0"
+TOKEN = os.getenv('DISCORD_TOKEN')
+print(TOKEN)
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -63,8 +65,8 @@ class Music(commands.Cog):
         vc.autoplay = True
         if vc.queue.is_empty and not vc.is_playing():
             await vc.play(search)
-            embed = discord.Embed(title= "Now playing", description= track, color= 2123412)
-            embed.set_thumbnail(url= await track.fetch_thumbnail())
+            embed = discord.Embed(title= "Now playing", description= search, color= 2123412)
+            embed.set_thumbnail(url= await search.fetch_thumbnail())
             message = await ctx.send(embed = embed)
             
             # add reactions to the message
@@ -102,36 +104,36 @@ class Music(commands.Cog):
             await ctx.send(f"Now playing: {vc.queue[0]}", delete_after=5)
             
     @commands.command()
-    async def disc(ctx: commands.Context):
+    async def disc(self, ctx: commands.Context):
         vc: wavelink.Player = ctx.voice_client
         await vc.disconnect()
         vc.queue.clear()
         
     @commands.command()
-    async def pause(ctx: commands.Context):
+    async def pause(self, ctx: commands.Context):
         vc: wavelink.Player = ctx.voice_client
         await vc.pause()
         
     @commands.command()
-    async def resume(ctx: commands.Context):
+    async def resume(self, ctx: commands.Context):
         vc: wavelink.Player = ctx.voice_client
         await vc.resume()
     
-    @commands.command()
-    async def volume(ctx: commands.Context, value: int):
-        if not ctx.author.voice or not ctx.author.voice.channel:
-            await ctx.send('Ugh, excuse me, but you need to actually be in a voice channel if you want to use this command. Like, seriously, get with the program.')
-            return
-        vc: wavelink.Player = ctx.voice_client
-        if not vc:
-            vc = await ctx.author.voice.channel.connect()
-        volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
-        await vc.set_volume(volume)
+    # @commands.command()
+    # async def volume(ctx: commands.Context, value: int):
+    #     if not ctx.author.voice or not ctx.author.voice.channel:
+    #         await ctx.send('Ugh, excuse me, but you need to actually be in a voice channel if you want to use this command. Like, seriously, get with the program.')
+    #         return
+    #     vc: wavelink.Player = ctx.voice_client
+    #     if not vc:
+    #         vc = await ctx.author.voice.channel.connect()
+    #     volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
+    #     await vc.set_volume(volume)
     
-    @commands.command()
-    async def mute(ctx: commands.Context):
-        vc: wavelink.Player = ctx.voice_client
-        await vc.set_volume(0)
+    # @commands.command()
+    # async def mute(ctx: commands.Context):
+    #     vc: wavelink.Player = ctx.voice_client
+    #     await vc.set_volume(0)
 
 @bot.event
 async def on_ready():
