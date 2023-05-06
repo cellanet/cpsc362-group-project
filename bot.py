@@ -174,21 +174,21 @@ class Music(commands.Cog):
         vc: wavelink.Player = ctx.voice_client
         await vc.resume()
     
-    # @commands.command()
-    # async def volume(ctx: commands.Context, value: int):
-    #     if not ctx.author.voice or not ctx.author.voice.channel:
-    #         await ctx.send('Ugh, excuse me, but you need to actually be in a voice channel if you want to use this command. Like, seriously, get with the program.')
-    #         return
-    #     vc: wavelink.Player = ctx.voice_client
-    #     if not vc:
-    #         vc = await ctx.author.voice.channel.connect()
-    #     volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
-    #     await vc.set_volume(volume)
+    @commands.command()
+    async def volume(ctx: commands.Context, value: int):
+        if not ctx.author.voice or not ctx.author.voice.channel:
+            await ctx.send('Ugh, excuse me, but you need to actually be in a voice channel if you want to use this command. Like, seriously, get with the program.')
+            return
+        vc: wavelink.Player = ctx.voice_client
+        if not vc:
+            vc = await ctx.author.voice.channel.connect()
+        volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
+        await vc.set_volume(volume)
     
-    # @commands.command()
-    # async def mute(ctx: commands.Context):
-    #     vc: wavelink.Player = ctx.voice_client
-    #     await vc.set_volume(0)
+    @commands.command()
+    async def mute(ctx: commands.Context):
+        vc: wavelink.Player = ctx.voice_client
+        await vc.set_volume(0)
     
     
     # async def await_reaction(ctx: commands.Context, search: wavelink.YouTubeTrack) -> discord.Message:
