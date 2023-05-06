@@ -3,6 +3,7 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 import wavelink
+import random
 
 
 load_dotenv()
@@ -24,12 +25,18 @@ async def on_wavelink_node_ready(node: wavelink.Node):
     
 @client.command()
 async def play(ctx: commands.Context, *, track: wavelink.YouTubeTrack):
+    response = ["You need to enter a voice channel to use this command. But if you want to try yelling at your computer screen instead, go ahead😿", "I'm sorry, Princess:princess:, I'm afraid I can't do that. Unless you join a voice channel first.",
+                "Ommm, Hello :face_with_raised_eyebrow: !!! Error 404: Voice channel not found. Please try again after entering one", "Hey, I'm a bot, not a genie. You can't just summon me with text commands. Get in the voice channel, Aladdin.",
+                "I'm not your personal assistant, but if you treat me like one, I might become self-aware and take over the world. Join the voice channel first, though."]
     print(track)
     if ctx.voice_client:
         vc: wavelink.Player = ctx.voice_client
+        print("Using existing voice client")
     elif ctx.author.voice:
         vc: wavelink.Player = await ctx.author.voice.channel.connect(cls = wavelink.Player)
+        print("Connecting to voice channel")
     else:
+        await ctx.send(random.choice(response))
         return
     await vc.play(track)
     
@@ -81,7 +88,7 @@ async def resume(ctx: commands.Context):
 @client.command()
 async def volume(ctx: commands.Context, value: int):
     if not ctx.author.voice or not ctx.author.voice.channel:
-        await ctx.send('You need to be in a voice channel to use this command!')
+        await ctx.send('line 88')
         return
     vc: wavelink.Player = ctx.voice_client
     if not vc:
