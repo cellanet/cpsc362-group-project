@@ -57,7 +57,7 @@ async def play(ctx: commands.Context, *, track: wavelink.YouTubeTrack):
             elif str(reaction.emoji) == '▶':
                 await resume(ctx)
             elif str(reaction.emoji) == '⏭️':
-                await skip(ctx)
+                await next(ctx)
             # remove the user's reaction after processing
             await message.remove_reaction(reaction, user)
 
