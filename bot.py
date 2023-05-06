@@ -79,17 +79,17 @@ class Music(commands.Cog):
             
             while True:
                 try:
-                    reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+                    reaction, user = await bot.wait_for('reaction_add', timeout=150.0, check=check)
                 except asyncio.TimeoutError:
                     # stop listening after 60 seconds
                     break
                 else:
                     if str(reaction.emoji) == '⏸':
-                        await vc.pause(ctx)
+                        await self.pause(ctx)
                     elif str(reaction.emoji) == '▶':
-                        await vc.resume(ctx)
+                        await self.resume(ctx)
                     elif str(reaction.emoji) == '⏭️':
-                        await vc.skip(ctx)
+                        await self.skip(ctx)
                     # remove the user's reaction after processing
                     await message.remove_reaction(reaction, user)
         else:
