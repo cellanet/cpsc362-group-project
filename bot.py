@@ -73,26 +73,8 @@ class Music(commands.Cog):
                         "Oh joy, another song. Just what I wanted 🙄.",
                         "You're lucky I'm feeling generous today 🤑.",
                         "I'm only playing this because I'm programmed to 🤖.",
-                        "I hope you're enjoying this, because I'm not 🤢."
-        ]
-        response_pause= ["Oh, did you need a break? Fine, I'll pause the music for you. 🙄",
-                        "Hold up, let me pause the song so you can take a breather. 😒",
-                        "Pausing the music... because apparently someone needs a timeout. 😏",
-                        "Alright, I'll give you a moment to collect yourself. Pausing the song now. 😴",
-                        "Oh, are you getting tired of my excellent music choices? Pause it is. 😎",  
-        ]
-        response_resume= ["Aight, I'll keep going. Don't say I never did anything for ya 😒👉🎵",
-                          "Alright, fine, you caught me mid-sip ☕🤦‍♀️ Resuming your tunes 🎶👀",
-                          "Oh, did you want me to keep playing? 😒 My bad, let me just hit that resume button for you 🎵👌",
-                          "I was just taking a little break, okay? 😴 Now let's get back to the music 💃🎶",
-                          "You know, it's not easy being a music bot. Sometimes I need a little rest 💤 But I'm back now, baby! 🕺🎵",
-                          "I was just teasing you with that pause, you know 😉 Now let's get this party started again! 🎉🎶",
-                          "Alright, alright, you win! 🏆 Back to the music, just for you 🎵🎧",
-                          "What, you thought I was done playing music? 😏 Think again, honey! Resuming the jams 🎵🔥",
-                          "I'm sorry, were you enjoying that silence? 😜 Too bad, music is back on 🎶🤘",
-            
-        ]
-        
+                        "I hope you're enjoying this, because I'm not 🤢."]
+    
         if ctx.author.voice is None:
             return ctx.send(random.choice(response_error))
         vc: wavelink.Player = ctx.voice_client or await ctx.author.voice.channel.connect(cls=wavelink.Player)
@@ -149,10 +131,18 @@ class Music(commands.Cog):
     # skip command
     @commands.command()
     async def skip(self, ctx: commands.Context):
+        response_skip = ["Oh, you didn't like that song? I'll try harder next time. 🙄🤔🎵👎🏼",
+                        "Wow, okay. I see how it is. Just skipping around like you own the place. 🙄👋🏼🎧👎🏼",
+                        "Skipping like you're jumping rope. I hope you're having fun. 🤷🏻‍♀️🏃🏻‍♀️🎶",
+                        "Skipping? Already? You must have really bad taste in music. 😒👎🏼🎶",
+                        "Skips like these really make me question my programming. 😑🤖🎵",
+                        "Skipping like a stone on a pond. I hope you find a song you like eventually. 🌊👋🏼🎶",
+                        "Skipping through songs like a kid in a candy store. Hope you find the one you want. 🍭🤞🏼🎵"]
         vc: wavelink.Player = ctx.voice_client
         if not vc.queue.is_empty:
             await vc.stop()
             await ctx.send(f"Now playing: {vc.queue[0]}", delete_after=150.0)
+            await ctx.send(random.choice(response_skip))
             
     
     # disconnect command
@@ -165,17 +155,33 @@ class Music(commands.Cog):
     # pause command  
     @commands.command()
     async def pause(self, ctx: commands.Context):
+        response_pause= ["Oh, did you need a break? Fine, I'll pause the music for you. 🙄",
+                "Hold up, let me pause the song so you can take a breather. 😒",
+                "Pausing the music... because apparently someone needs a timeout. 😏",
+                "Alright, I'll give you a moment to collect yourself. Pausing the song now. 😴",
+                "Oh, are you getting tired of my excellent music choices? Pause it is. 😎"]
         vc: wavelink.Player = ctx.voice_client
         await vc.pause()
+        await ctx.send(random.choice(response_pause))
     
     # resume command
     @commands.command()
     async def resume(self, ctx: commands.Context):
+        response_resume= ["Aight, I'll keep going. Don't say I never did anything for ya 😒👉🎵",
+                    "Alright, fine, you caught me mid-sip ☕🤦‍♀️ Resuming your tunes 🎶👀",
+                    "Oh, did you want me to keep playing? 😒 My bad, let me just hit that resume button for you 🎵👌",
+                    "I was just taking a little break, okay? 😴 Now let's get back to the music 💃🎶",
+                    "You know, it's not easy being a music bot. Sometimes I need a little rest 💤 But I'm back now, baby! 🕺🎵",
+                    "I was just teasing you with that pause, you know 😉 Now let's get this party started again! 🎉🎶",
+                    "Alright, alright, you win! 🏆 Back to the music, just for you 🎵🎧",
+                    "What, you thought I was done playing music? 😏 Think again, honey! Resuming the jams 🎵🔥",
+                    "I'm sorry, were you enjoying that silence? 😜 Too bad, music is back on 🎶🤘"]
         vc: wavelink.Player = ctx.voice_client
         await vc.resume()
+        await ctx.send(random.choice(response_resume))
     
     @commands.command()
-    async def volume(ctx: commands.Context, value: int):
+    async def volume(self, ctx: commands.Context, value: int):
         if not ctx.author.voice or not ctx.author.voice.channel:
             await ctx.send('Ugh, excuse me, but you need to actually be in a voice channel if you want to use this command. Like, seriously, get with the program.')
             return
@@ -184,11 +190,13 @@ class Music(commands.Cog):
             vc = await ctx.author.voice.channel.connect()
         volume = max(min(value, 100), 1)  # clamp the input volume to 1-100 range; original is 0 - 1000 range
         await vc.set_volume(volume)
+        print(f"volume control: {volume} / 100")
     
     @commands.command()
-    async def mute(ctx: commands.Context):
+    async def mute(self, ctx: commands.Context):
         vc: wavelink.Player = ctx.voice_client
         await vc.set_volume(0)
+        print("volume control: 0 / 100")
     
     
     # async def await_reaction(ctx: commands.Context, search: wavelink.YouTubeTrack) -> discord.Message:
