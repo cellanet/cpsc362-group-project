@@ -59,14 +59,14 @@ class Music(commands.Cog):
             await vc.play(search)
         else:
             await vc.queue.put_wait(search)
-            await ctx.send(f'Added `{search.title}` to the queue...', delete_after=10)
+            await ctx.send(f'Added `{search.title}` to the queue...')
 
     @commands.command()
     async def skip(self, ctx: commands.Context):
         vc: wavelink.Player = ctx.voice_client
         if not vc.queue.is_empty:
             await vc.stop()
-            await ctx.send(f"Now playing: {vc.queue[0]}", delete_after=5)
+            await ctx.send(f"Now playing: {vc.queue[0]}")
 
 @bot.event
 async def on_ready():
